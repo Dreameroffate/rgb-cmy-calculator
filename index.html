@@ -621,6 +621,21 @@ body::before {
     // Init
     setRGB(0,0,0);
     syncViews();
+    // === THEME TOGGLE ===
+(function(){
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = saved || (prefersDark ? 'dark' : 'light');
+  if(initial === 'light') root.setAttribute('data-theme','light');
+  const btn = document.getElementById('themeToggle');
+  btn?.addEventListener('click', ()=>{
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if(isLight){ root.removeAttribute('data-theme'); localStorage.setItem('theme','dark'); }
+    else { root.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); }
+  });
+})();
+
   </script>
 </body>
 </html>
