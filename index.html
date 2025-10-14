@@ -200,22 +200,35 @@ body{
   z-index:auto !important;
 }
 
+./* === ОНОВЛЕНИЙ ФУТЕР (правий край + більший текст + чітке світіння) === */
 .site-footer{
-  text-align:center;
-  padding:12px 0 16px;
-  opacity:0.85;
+  text-align:right; /* 👉 переносимо вправо */
+  padding:12px 16px 18px;
+  opacity:0.95;
   position:relative;
   z-index:1;
 }
 
-/* --- Неоновий текст --- */
 .site-footer .neon{
   display:inline-block;
   font-weight:800;
-  letter-spacing:.3px;
-  color:var(--text);
-  text-shadow: 0 0 8px rgba(139,92,246,0.7), 0 0 18px rgba(168,85,247,0.5);
+  font-size:16px; /* 👉 збільшена чіткість */
+  letter-spacing:0.4px;
+  text-shadow: 
+    0 0 8px rgba(139,92,246,0.85), 
+    0 0 18px rgba(168,85,247,0.6),
+    0 0 28px rgba(168,85,247,0.4);
   animation: neonPulse 2.4s ease-in-out infinite;
+}
+
+/* Світла тема (менш агресивне світіння) */
+:root[data-theme="light"] .site-footer .neon{
+  color:#0b1220;
+  text-shadow: 
+    0 0 4px rgba(124,58,237,0.3), 
+    0 0 10px rgba(124,58,237,0.25);
+}
+
 }
 
 /* --- Анімація пульсації --- */
