@@ -67,14 +67,36 @@
     .holo::before{ content:""; position:absolute; inset:-1px; z-index:-1; border-radius:14px; padding:1px; background:linear-gradient(135deg,#a78bfa, #22d3ee, #fb7185, #a78bfa); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;}
   </style>
   <style>
-    /* Background image layer with blur for readability */
-    body{ position: relative; }
-    body::before{
-      content: ""; position: fixed; inset: 0; z-index: -1;
-      background-image: url('data:image/jpeg;base64,r34nH8R/Aa9R9PTX+Sgh7cQUX1BrX+VBn9EwPalLS8jQuUcID+5oYIHY+NwEIxNk...BXUDB6DGOoiCFCifYU0deIaQH96/QMDjPxMLqUONfSFnS66jKwNDwtRhXGwOJ//Z');
-      background-size: cover; background-position: center; background-repeat: no-repeat;
-      filter: blur(28px) brightness(.45) saturate(1.1);
-      transform: scale(1.06); /* hide blur edges */
+    /* === Custom Background with Blur + Dark Overlay === */
+body {
+  background: url('background.jpg') no-repeat center center fixed !important;
+  background-size: cover !important;
+  position: relative;
+}
+
+/* Розмиття + затемнення, щоб текст не зливався */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35); /* затемнення фону */
+  backdrop-filter: blur(6px); /* розмиття */
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Підсилення читабельності тексту */
+.card, .badge, header, .swatch, .btn {
+  background-color: rgba(15, 12, 28, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+/* Легке неонове світіння навколо блоків */
+.card, .btn, .swatch {
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.15) !important;
+}
+
     }
   </style>
 </head>
