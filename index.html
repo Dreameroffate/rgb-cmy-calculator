@@ -181,16 +181,73 @@
 }
 </style>
 
+  <style>
+/* --- Layout: футер знизу, без fixed --- */
+body{
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+.container{ flex:1; }
+
+/* --- Базовий вигляд футера --- */
+#brandFooter{
+  position:static !important;
+  width:auto !important;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  z-index:auto !important;
+}
+
+.site-footer{
+  text-align:center;
+  padding:12px 0 16px;
+  opacity:0.85;
+  position:relative;
+  z-index:1;
+}
+
+/* --- Неоновий текст --- */
+.site-footer .neon{
+  display:inline-block;
+  font-weight:800;
+  letter-spacing:.3px;
+  color:var(--text);
+  text-shadow: 0 0 8px rgba(139,92,246,0.7), 0 0 18px rgba(168,85,247,0.5);
+  animation: neonPulse 2.4s ease-in-out infinite;
+}
+
+/* --- Анімація пульсації --- */
+@keyframes neonPulse {
+  0% {
+    text-shadow: 0 0 6px rgba(139,92,246,0.6), 0 0 14px rgba(168,85,247,0.4);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(139,92,246,0.9), 0 0 28px rgba(168,85,247,0.6);
+  }
+  100% {
+    text-shadow: 0 0 6px rgba(139,92,246,0.6), 0 0 14px rgba(168,85,247,0.4);
+  }
+}
+
+/* --- Світла тема: слабший неон --- */
+:root[data-theme="light"] .site-footer .neon{
+  color:#0b1220;
+  text-shadow: 0 0 4px rgba(124,58,237,0.3), 0 0 8px rgba(124,58,237,0.2);
+  animation-duration:3s;
+}
+</style>
+
 
   
 </head>
 
 <body>
   <div class="container">
-    <!-- Простий футер, як ти просив -->
-    <div class="footer-brand holo" id="brandFooter" style="position:fixed; bottom:0; left:0; width:100%; z-index:10; display:flex; justify-content:center; align-items:center; gap:12px; padding:10px 12px; border-top:1px solid #2a1f47; background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%); box-shadow:0 -4px 20px rgba(139,92,246,.25);">
-      <div class="neon" id="brandTextLabel" style="font-weight:800; letter-spacing:.3px">Powered by Ihor Matviienko</div>
-    </div>
+   <footer id="brandFooter" class="site-footer">
+  <span class="neon">Powered by Ihor Matviienko</span>
+</footer>
 
     <header>
       <div>
