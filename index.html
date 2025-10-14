@@ -287,7 +287,69 @@ body{
   animation-duration:3s;
 }
 </style>
+  /* === CMY sliders = RGB style === */
+#paneCMY input[type="range"]{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: #e6e7eb;           /* як у RGB трек */
+  outline: none;
+}
 
+/* WebKit (Chrome/Edge/Safari) */
+#paneCMY input[type="range"]::-webkit-slider-runnable-track{
+  height: 8px;
+  background: #e6e7eb;
+  border-radius: 9999px;
+}
+#paneCMY input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1976ff;            /* синій маркер як у RGB */
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.9) inset,
+    0 1px 3px rgba(0,0,0,.35);
+  margin-top: -4px;               /* центрує thumb по треку */
+}
+
+/* Firefox */
+#paneCMY input[type="range"]::-moz-range-track{
+  height: 8px;
+  background: #e6e7eb;
+  border-radius: 9999px;
+}
+#paneCMY input[type="range"]::-moz-range-thumb{
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1976ff;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.9) inset,
+    0 1px 3px rgba(0,0,0,.35);
+  border: none;
+}
+
+/* Old Edge/IE (якщо треба) */
+#paneCMY input[type="range"]::-ms-track{
+  height: 8px; border: none; color: transparent;
+  background: transparent;
+}
+#paneCMY input[type="range"]::-ms-fill-lower,
+#paneCMY input[type="range"]::-ms-fill-upper{
+  background: #e6e7eb; border-radius: 9999px;
+}
+#paneCMY input[type="range"]::-ms-thumb{
+  width: 16px; height: 16px; border-radius: 50%;
+  background: #1976ff;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.9) inset,
+    0 1px 3px rgba(0,0,0,.35);
+}
+</style>
 
   
 </head>
