@@ -114,21 +114,10 @@
   <style>
 
     <style>
-/* === Floating Neon Footer (Apple/Adobe vibe) === */
-.footer-brand{
-  position:fixed; left:0; right:0; bottom:10px;
-  margin-inline:auto; width:min(900px, calc(100% - 24px));
-  display:flex; align-items:center; gap:10px; justify-content:center;
-  padding:10px 14px; border-radius:14px;
-  color:var(--text);
-  background: linear-gradient(180deg, rgba(15,12,28,.82), rgba(15,12,28,.72));
-  border:1px solid rgba(139,92,246,.22);
-  backdrop-filter: blur(10px) saturate(1.05);
-  box-shadow:
-    0 10px 35px rgba(0,0,0,.45),
-    0 0 22px rgba(139,92,246,.25),
-    inset 0 0 0 1px rgba(255,255,255,.06);
-  z-index: 1000;
+<div class="footer-brand holo" id="brandFooter" style="position:fixed; bottom:0; left:0; width:100%; z-index:10; display:flex; justify-content:center; align-items:center; gap:12px; padding:10px 12px; border-top:1px solid #2a1f47; background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%); box-shadow:0 -4px 20px rgba(139,92,246,.25);">
+  <div class="neon" id="brandTextLabel" style="font-weight:800; letter-spacing:.3px">Powered by Ihor Matviienko</div>
+</div>
+
 }
 .footer-dot{
   width:10px; height:10px; border-radius:999px;
@@ -664,23 +653,7 @@ body::before {
     else { root.setAttribute('data-theme','light'); localStorage.setItem('theme','light'); }
   });
 })();
- // === Footer year + last updated ===
-(function(){
-  const y = document.getElementById('footerYear');
-  const upd = document.getElementById('footerUpdated');
-
-  // Поточний рік
-  if (y) y.textContent = new Date().getFullYear();
-
-  // Остання зміна файлу (браузерне lastModified)
-  const dt = new Date(document.lastModified);
-  const fmt = dt.toLocaleString('uk-UA', {
-    year:'numeric', month:'2-digit', day:'2-digit',
-    hour:'2-digit', minute:'2-digit'
-  });
-
-  if (upd) upd.textContent = `Оновлено — ${fmt}`;
-})();
+ 
 
 
 
