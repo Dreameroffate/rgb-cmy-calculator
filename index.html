@@ -96,6 +96,46 @@ body::before {
 .card, .btn, .swatch {
   box-shadow: 0 0 14px rgba(139, 92, 246, 0.15) !important;
 }
+    /* --- Force remove old gradients --- */
+html, body {
+  background: none !important;
+}
+
+/* --- Background image (cache-bust) --- */
+body {
+  background: url('background.jpg?v=2') no-repeat center center fixed !important;
+  background-size: cover !important;
+  position: relative;
+}
+
+/* --- Dark blur overlay ABOVE the image, BEHIND the UI --- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  z-index: 0; /* тепер оверлей над фоном */
+}
+
+/* --- Підняти інтерфейс над оверлеєм --- */
+.container, header, .card, .badge, .swatch, .btn, #brandFooter {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Легка підкладка для читабельності --- */
+.card, .badge, header, .swatch, .btn {
+  background-color: rgba(15, 12, 28, 0.72) !important;
+  backdrop-filter: blur(4px) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+.card, .btn, .swatch {
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.15) !important;
+}
+
 
     }
   </style>
