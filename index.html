@@ -60,6 +60,45 @@
   .tab{cursor:pointer; padding:8px 12px; border-radius:10px; border:1px solid #243140; background:#0b1220; color:var(--text); font-weight:600; font-size:14px}
   .tab.active{outline:2px solid var(--accent); box-shadow:0 0 0 4px rgba(59,130,246,.15)}
   .hidden{display:none}
+/* Темна тема (за замовчуванням) вже є через твої змінні :root */
+:root{
+  /* існуючі змінні залишаємо */
+}
+
+/* Світла тема */
+:root[data-theme="light"]{
+  --bg:#ffffff;
+  --panel:#f8fafc;
+  --panel-2:#eef2f7;
+  --text:#0b1220;
+  --muted:#4b5563;
+  --accent:#7c3aed;
+}
+
+/* Тло сторінки у світлій темі */
+:root[data-theme="light"] body{
+  background:none !important; /* прибираємо градієнти */
+  background:#f5f7fb !important;
+}
+
+/* Підкладка карток у світлій темі */
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .badge,
+:root[data-theme="light"] header,
+:root[data-theme="light"] .swatch,
+:root[data-theme="light"] .btn{
+  background-color: rgba(255,255,255,0.8) !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+/* Темний оверлей вимкнемо у світлій темі */
+:root[data-theme="light"] body::before{
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(4px);
+}
+
+    
   </style>
   <style>
     .neon{ text-shadow:0 0 8px rgba(139,92,246,.9), 0 0 18px rgba(168,85,247,.6); }
