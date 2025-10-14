@@ -288,39 +288,6 @@ body{
 }
 </style>
 
-  <style>
-/* === Позиціонування бренду поза блоком (правий нижній край) === */
-.help-wrap { position: relative; }
-
-    .brand-tag{
-  text-align:right;
-  margin-top:10px;
-  padding-right:6px;
-  opacity:0.9;
-}
-
-.brand-tag .neon{
-  font-weight:700;
-  font-size:15px;
-  letter-spacing:0.4px;
-  display:inline-block;
-  text-shadow: 
-    0 0 6px rgba(139,92,246,0.7), 
-    0 0 14px rgba(168,85,247,0.5);
-  animation: neonPulse 2.6s ease-in-out infinite;
-}
-
-:root[data-theme="light"] .brand-tag .neon{
-  color:#0b1220;
-  text-shadow: 
-    0 0 4px rgba(124,58,237,0.35), 
-    0 0 8px rgba(124,58,237,0.25);
-}
-
-<style>
-
-
-
 
   
 </head>
@@ -488,28 +455,22 @@ body{
         </div>
       </section>
 
-     <div class="container">
+      <section class="card">
+  <h2 data-i18n="help">Довідка</h2>
+  <p class="helper" data-i18n="help_text">% обчислюється як <strong>(значення / 255) × 100</strong>. CMY% = 100% − RGB% (субтрактивна модель). Натискай на пресети, рухай слайдери або вводь HEX. Тему оформлено у фіолетовому неон-стилі.</p>
 
- <div class="help-wrap"> <!-- ✅ Відкриваємо обгортку -->
-
-  <section class="card">
-    <h2 data-i18n="help">Довідка</h2>
-    <p class="helper" data-i18n="help_text">% обчислюється як <strong>(значення / 255) × 100</strong>. CMY% = 100% − RGB% (субтрактивна модель). Натискай на пресети, рухай слайдери або вводь HEX. Тему оформлено у фіолетовому неон-стилі.</p>
-    <div class="inline">
-      <button class="btn" id="reset" data-i18n="reset">Скинути</button>
-      <button class="btn" id="random" data-i18n="random">Випадковий колір</button>
-    </div>
-  </section> <!-- ✅ Закрили card -->
-
-  <!-- ✅ Бренд поза блоком, але прив'язаний до help-wrap -->
-  <div class="brand-floating">
-    <span class="neon">Powered by Ihor Matviienko</span>
+  <div class="inline">
+    <button class="btn" id="reset" data-i18n="reset">Скинути</button>
+    <button class="btn" id="random" data-i18n="random">Випадковий колір</button>
   </div>
 
-</div> <!-- ✅ ТІЛЬКИ ЗАРАЗ закриваємо help-wrap -->
+  <!-- ✅ Бренд-підпис: вставляти саме тут -->
+  <div class="brand-tag">
+    <span class="neon">Powered by Ihor Matviienko</span>
+  </div>
+</section>
 
-
-
+</div>
 
         </div>
       </section>
