@@ -288,6 +288,37 @@ body{
 }
 </style>
 
+  <style>
+/* === Позиціонування бренду поза блоком (правий нижній край) === */
+.help-wrap { position: relative; }
+
+.brand-floating{
+  position: absolute;
+  right: 12px;      /* 🔧 можна змінювати для точного вирівнювання */
+  bottom: -16px;    /* 🔧 підняти/опустити — регулюється тут */
+  opacity: .9;
+  pointer-events: none; /* не заважає клікам */
+}
+
+.brand-floating .neon{
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .4px;
+  text-shadow:
+    0 0 6px rgba(139,92,246,.7),
+    0 0 14px rgba(168,85,247,.5);
+  animation: neonPulse 2.6s ease-in-out infinite;
+}
+
+/* Світла тема — м’якше світіння */
+:root[data-theme="light"] .brand-floating .neon{
+  color:#0b1220;
+  text-shadow:
+    0 0 4px rgba(124,58,237,.35),
+    0 0 8px rgba(124,58,237,.25);
+}
+</style>
+
 
   
 </head>
@@ -455,22 +486,28 @@ body{
         </div>
       </section>
 
-      <section class="card">
-  <h2 data-i18n="help">Довідка</h2>
-  <p class="helper" data-i18n="help_text">% обчислюється як <strong>(значення / 255) × 100</strong>. CMY% = 100% − RGB% (субтрактивна модель). Натискай на пресети, рухай слайдери або вводь HEX. Тему оформлено у фіолетовому неон-стилі.</p>
+     <div class="container">
 
-  <div class="inline">
-    <button class="btn" id="reset" data-i18n="reset">Скинути</button>
-    <button class="btn" id="random" data-i18n="random">Випадковий колір</button>
-  </div>
+ <div class="help-wrap"> <!-- ✅ Відкриваємо обгортку -->
 
-  <!-- ✅ Бренд-підпис: вставляти саме тут -->
-  <div class="brand-tag">
+  <section class="card">
+    <h2 data-i18n="help">Довідка</h2>
+    <p class="helper" data-i18n="help_text">% обчислюється як <strong>(значення / 255) × 100</strong>. CMY% = 100% − RGB% (субтрактивна модель). Натискай на пресети, рухай слайдери або вводь HEX. Тему оформлено у фіолетовому неон-стилі.</p>
+    <div class="inline">
+      <button class="btn" id="reset" data-i18n="reset">Скинути</button>
+      <button class="btn" id="random" data-i18n="random">Випадковий колір</button>
+    </div>
+  </section> <!-- ✅ Закрили card -->
+
+  <!-- ✅ Бренд поза блоком, але прив'язаний до help-wrap -->
+  <div class="brand-floating">
     <span class="neon">Powered by Ihor Matviienko</span>
   </div>
-</section>
 
-</div>
+</div> <!-- ✅ ТІЛЬКИ ЗАРАЗ закриваємо help-wrap -->
+
+
+
 
         </div>
       </section>
