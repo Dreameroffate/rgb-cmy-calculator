@@ -292,8 +292,32 @@ body{
 /* === Позиціонування бренду поза блоком (правий нижній край) === */
 .help-wrap { position: relative; }
 
+.brand-floating{
+  position: absolute;
+  right: 12px;      /* 🔧 можна змінювати для точного вирівнювання */
+  bottom: -16px;    /* 🔧 підняти/опустити — регулюється тут */
+  opacity: .9;
+  pointer-events: none; /* не заважає клікам */
+}
 
+.brand-floating .neon{
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .4px;
+  text-shadow:
+    0 0 6px rgba(139,92,246,.7),
+    0 0 14px rgba(168,85,247,.5);
+  animation: neonPulse 2.6s ease-in-out infinite;
+}
 
+/* Світла тема — м’якше світіння */
+:root[data-theme="light"] .brand-floating .neon{
+  color:#0b1220;
+  text-shadow:
+    0 0 4px rgba(124,58,237,.35),
+    0 0 8px rgba(124,58,237,.25);
+}
+</style>
 
 
   
