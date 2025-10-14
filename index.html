@@ -116,6 +116,73 @@
     }
     .container, header, .card, .badge, .swatch, .btn, #brandFooter { position:relative; z-index:1; }
   </style>
+
+  <style>
+/* --- LIGHT THEME FIXES: кращий контраст для світлої теми --- */
+
+/* Світлі інпути */
+:root[data-theme="light"] input[type="number"],
+:root[data-theme="light"] input[type="text"]{
+  background:#ffffff !important;
+  color:#0b1220 !important;
+  border:1px solid #d0d7e2 !important;
+  box-shadow:none !important;
+}
+
+/* Світлі таби/кнопки/бейджі/пресети */
+:root[data-theme="light"] .tab,
+:root[data-theme="light"] .btn,
+:root[data-theme="light"] .badge,
+:root[data-theme="light"] .swatch{
+  background:#ffffff !important;
+  color:#0b1220 !important;
+  border:1px solid #d0d7e2 !important;
+}
+:root[data-theme="light"] .tab.active{
+  outline:2px solid var(--accent) !important;
+  box-shadow:0 0 0 4px rgba(124,58,237,.12) !important;
+}
+
+/* Карточки/заголовки/прев’ю/точки */
+:root[data-theme="light"] .card h2{ color:#0b1220 !important; }
+:root[data-theme="light"] .preview{ border-color:#d1d5db !important; }
+:root[data-theme="light"] .dot{ border-color:#e5e7eb !important; }
+
+/* Підписи та лейбли */
+:root[data-theme="light"] .helper{ color:#6b7280 !important; }
+:root[data-theme="light"] .row label{ color:#0b1220 !important; }
+
+/* Слайдери (track + thumb) */
+:root[data-theme="light"] input[type="range"]{
+  -webkit-appearance:none; appearance:none;
+  height:6px; width:100%;
+  background:#e5e7eb; border-radius:999px; outline:none;
+}
+:root[data-theme="light"] input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:16px; height:16px; border-radius:50%;
+  background:var(--accent); border:2px solid #ffffff;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
+  margin-top:-5px; /* центрує піпку */
+}
+:root[data-theme="light"] input[type="range"]::-moz-range-thumb{
+  width:16px; height:16px; border-radius:50%;
+  background:var(--accent); border:2px solid #ffffff;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
+}
+:root[data-theme="light"] input[type="range"]::-moz-range-track{
+  height:6px; background:#e5e7eb; border-radius:999px;
+}
+
+/* Легший overlay у світлій темі */
+:root[data-theme="light"] body::before{
+  background: rgba(255,255,255,0.18) !important;
+  backdrop-filter: blur(4px) !important;
+}
+</style>
+
+
+  
 </head>
 
 <body>
