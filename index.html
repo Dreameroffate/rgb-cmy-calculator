@@ -317,11 +317,66 @@ body{
     0 0 4px rgba(124,58,237,.35),
     0 0 8px rgba(124,58,237,.25);
 }
+
+    /* === Стиль для Color Picker у неоновій темі === */
+#pickerCard {
+  background: rgba(0,0,0,0.25);
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 0 10px rgba(139,92,246,0.15) inset;
+  backdrop-filter: blur(6px);
+}
+
+#pickerCard input[type="color"] {
+  border: 2px solid rgba(168,85,247,0.4);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#pickerCard input[type="color"]:hover {
+  box-shadow: 0 0 8px rgba(168,85,247,0.7), 0 0 14px rgba(168,85,247,0.4);
+  transform: scale(1.05);
+}
+
+#pickerCard input[type="text"] {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(168,85,247,0.35);
+  border-radius: 6px;
+  padding: 5px 8px;
+  transition: 0.25s;
+}
+
+#pickerCard input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(168,85,247,0.7), 0 0 14px rgba(168,85,247,0.4);
+}
+
+#pickerHint {
+  font-size: 11px;
+  opacity: 0.5;
+  margin-left: 4px;
+}
+
+    
 </style>
+
+ 
 
 
   
 </head>
+
+   <!-- 🎨 Color Picker -->
+<section class="card" id="pickerCard" style="margin-bottom:12px;">
+  <div class="inline" style="gap:12px; align-items:center;">
+    <label style="min-width:72px;">🎨 Колір</label>
+    <input id="colorPicker" type="color" value="#000000" style="width:44px; height:32px; padding:0; border:none; background:none;" />
+    <input id="hexPicker" type="text" value="#000000" maxlength="7" style="width:110px;" />
+    <small id="pickerHint" class="helper">Синхронізовано з RGB</small>
+  </div>
+</section>
+
 
 <body>
   <div class="container">
@@ -844,6 +899,76 @@ body{
     // Init
     setRGB(0,0,0);
     syncViews();
+
+    <script>
+(function(){
+  const RGB_IDS = {
+    range: ['rRange','gRange','bRange','r_range','g_range','b_range'],
+    num:   ['rNum255','gNum255','bNum255','rNum','gNum','bNum','r','g','b']
+  };
+
+  const $ = (sel)=>document.querySelector(sel);
+  const colorEl = $('#colorPicker');
+  const hexEl   = $('#hexPicker');
+
+  const clamp = (v)=>Math.max(0, Math.min(255, v|0));
+  const toHex = (r,g,b)=>'#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();
+  const hexToRgb = (hex)=>{
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.trim());
+    if(!m) return null;
+    return { r:parseInt(m[1],16), g:parseInt(m[2],16), b:parseInt(m[3],16) };
+  };
+
+  function setByIds(list, idx, value){
+    for(const id of list){
+      const el = document.getElementById(id);
+      if(el){
+        el.value = value;
+        el.dispatchEvent(new Event('input',{bubbles:true}));
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function getByIds(list, idx){
+    for(const id of list){
+      const el = document.getElementById(id);
+      if(el) return +el.value;
+    }
+    return null;
+  }
+
+  function applyHexToUI(hex){
+    const rgb = hexToRgb(hex);
+    if(!rgb) return;
+    hexEl.value = toHex(rgb.r,rgb.g,rgb.b);
+    colorEl.value = hexEl.value;
+    setByIds(RGB_IDS.range, 0, rgb.r) || setByIds(RGB_IDS.num,0,rgb.r);
+    setByIds(RGB_IDS.range, 1, rgb.g) || setByIds(RGB_IDS.num,1,rgb.g);
+    setByIds(RGB_IDS.range, 2, rgb.b) || setByIds(RGB_IDS.num,2,rgb.b);
+  }
+
+  colorEl.addEventListener('input', e => applyHexToUI(e.target.value));
+  hexEl.addEventListener('input',  e => applyHexToUI(e.target.value));
+
+  function syncFromRgb(){
+    const r = getByIds(RGB_IDS.range,0) ?? getByIds(RGB_IDS.num,0);
+    const g = getByIds(RGB_IDS.range,1) ?? getByIds(RGB_IDS.num,1);
+    const b = getByIds(RGB_IDS.range,2) ?? getByIds(RGB_IDS.num,2);
+    if([r,g,b].every(v => v !== null)){
+      const hex = toHex(clamp(r), clamp(g), clamp(b));
+      hexEl.value = hex;
+      colorEl.value = hex;
+    }
+  }
+
+  document.addEventListener('input', syncFromRgb);
+
+  syncFromRgb();
+})();
+</script>
+
   </script>
 </body>
 </html>
